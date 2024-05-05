@@ -17,7 +17,7 @@ import java.util.Date;
 @Table(name = "student")
 public class Student extends AbstractClassEntity {
 
-    @Column(name = "student_code")
+    @Column(name = "student_code", unique = true)
     private String studentCode;
 
     @Column(name = "year_study")
