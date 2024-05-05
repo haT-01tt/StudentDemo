@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ExceptionErrorCode {
+public enum ExceptionCode {
     IN("Save successful", "INS"),
     UP("Update successful", "UPD"),
     DE("Delete successful", "DEL");
