@@ -27,7 +27,9 @@ public enum ExceptionErrorCode {
     private enum Action {
         SAVE("Save"),
         UPDATE("Update"),
-        DELETE("Delete");
+        DELETE("Delete"),
+        FIND("Find"),
+        NOT_FOUND("Not found");
 
         private final String value;
     }
@@ -37,9 +39,11 @@ public enum ExceptionErrorCode {
         STU_001(Action.SAVE.value + " " + Message.STUDENT.value + " successful", "001"),
         STU_002(Action.UPDATE.value + " " + Message.STUDENT.value + " successful", "002"),
         STU_003(Action.DELETE.value + " " + Message.STUDENT.value + " successful", "003"),
-        STU_010(Action.SAVE.value + " " + Message.STUDENT.value + " fail", "011"),
-        STU_011(Action.UPDATE.value + " " + Message.STUDENT.value + " fail", "012"),
-        STU_012(Action.DELETE.value + " " + Message.STUDENT.value + " fail", "013")
+        STU_010(Action.SAVE.value + " " + Message.STUDENT.value + " fail", "010"),
+        STU_011(Action.UPDATE.value + " " + Message.STUDENT.value + " fail", "011"),
+        STU_012(Action.DELETE.value + " " + Message.STUDENT.value + " fail", "012"),
+        STU_013(Action.FIND.value + " " + Message.STUDENT.value + " successful", "013"),
+        STU_014(Action.NOT_FOUND.value + " " + Message.STUDENT.value + " fail", "014")
         ;
 
         private final String message;

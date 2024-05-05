@@ -8,7 +8,8 @@ public interface GenericService<T> {
     T findById(Class<T> entityClass ,Integer id);
     T save(T entity);
     <T> void delete(Class<T> entityClass,Integer id);
-    default T update(T entity){
-        return null;
+    default T update(T entity, Integer id){
+        T en = this.findById((Class<T>) entity, id);
+        return en;
     };
 }
