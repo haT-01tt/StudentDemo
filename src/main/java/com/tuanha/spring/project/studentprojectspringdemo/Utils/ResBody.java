@@ -1,13 +1,23 @@
 package com.tuanha.spring.project.studentprojectspringdemo.Utils;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-public class ResBody {
-    private String message;
+public class ResBody<T> {
+    private T body;
     private String code;
+    private String message;
+
+    public ResBody(T body, String code, String message) {
+        this.body = body;
+        this.code = code;
+        this.message = message;
+    }
+
+    public ResBody(String code, String message) {
+        this.code = code;
+        this.message = message;
+    }
 }

@@ -27,15 +27,31 @@ public class StudentController {
     }
 
     @PostMapping(value = "/save-student")
-    public ResponseEntity<ResBody> saveStudent(@RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<ResBody<Student>> saveStudent(@RequestBody StudentDTO studentDTO) {
         try {
-            studentService.saveStudent(studentDTO);
-            return new ResponseEntity<>(new ResBody(ExceptionErrorCode.StudentMessage.STU_001.getCode()
-                    , ExceptionErrorCode.StudentMessage.STU_001.getMessage()), HttpStatus.OK);
+            return new ResponseEntity<>(
+                    new ResBody(studentService.saveStudent(studentDTO),
+                            ExceptionErrorCode.StudentMessage.STU_001.getCode(),
+                            ExceptionErrorCode.StudentMessage.STU_001.getMessage()), HttpStatus.OK);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResBody(
-                    ExceptionErrorCode.StudentMessage.STU_010.getCode(),
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                    new ResBody(ExceptionErrorCode.StudentMessage.STU_010.getCode(),
                     ExceptionErrorCode.StudentMessage.STU_010.getMessage()));
+        }
+    }
+
+    @PostMapping(value = "/{id}/get-student")
+    public ResponseEntity<ResBody<StudentDTO>> getByIdStudent(@PathVariable("id") Integer id) {
+        try {
+            return
+                    new ResponseEntity<>(
+                            new ResBody(studentService.getByIdStudent(id),
+                                    ExceptionErrorCode.StudentMessage.STU_013.getCode(),
+                                    ExceptionErrorCode.StudentMessage.STU_013.getMessage()), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResBody(
+                    ExceptionErrorCode.StudentMessage.STU_014.getCode(),
+                    ExceptionErrorCode.StudentMessage.STU_014.getMessage()));
         }
     }
 
