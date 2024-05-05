@@ -43,6 +43,7 @@ public enum ExceptionErrorCode {
 
     }
     @AllArgsConstructor
+    @Getter
     public enum StudentOrTeacherMessage {
         SOT_004(Action.SAVE.value + " " + Message.SOT.value + " successful", "004"),
         SOT_005(Action.UPDATE.value + " " + Message.SOT.value + " successful", "005"),
@@ -52,6 +53,7 @@ public enum ExceptionErrorCode {
         private final String code;
     }
     @AllArgsConstructor
+    @Getter
     public enum ClassifyStudents {
         CS_007(Action.SAVE.value + " " + Message.CLASSIFY_STUDENTS.value + " successful", "007"),
         CS_008(Action.UPDATE.value + " " + Message.CLASSIFY_STUDENTS.value + " successful", "008"),

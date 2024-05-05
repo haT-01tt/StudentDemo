@@ -6,14 +6,12 @@ import com.tuanha.spring.project.studentprojectspringdemo.Service.StudentService
 import com.tuanha.spring.project.studentprojectspringdemo.Utils.ResBody;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController(value = "/api/student")
+@RestController
+@RequestMapping(value = "/api/student")
 public class StudentController {
     @Autowired
     private StudentService studentService;

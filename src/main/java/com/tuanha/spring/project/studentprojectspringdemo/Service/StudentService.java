@@ -3,7 +3,6 @@ package com.tuanha.spring.project.studentprojectspringdemo.Service;
 import com.tuanha.spring.project.studentprojectspringdemo.Dto.StudentDTO;
 import com.tuanha.spring.project.studentprojectspringdemo.Entity.Student;
 import com.tuanha.spring.project.studentprojectspringdemo.Repo.GenericService;
-import com.tuanha.spring.project.studentprojectspringdemo.Repo.MappingDtoToEntity;
 import com.tuanha.spring.project.studentprojectspringdemo.Repo.MappingEntityToDTO;
 import com.tuanha.spring.project.studentprojectspringdemo.StudentException;
 import com.tuanha.spring.project.studentprojectspringdemo.Utils.DateUtils;

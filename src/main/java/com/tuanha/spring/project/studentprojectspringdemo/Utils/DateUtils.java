@@ -3,7 +3,6 @@ package com.tuanha.spring.project.studentprojectspringdemo.Utils;
 import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionErrorCode;
 import com.tuanha.spring.project.studentprojectspringdemo.StudentException;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +13,7 @@ public class DateUtils {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             return dateFormat.parse(oneDate);
         } catch (ParseException e) {
-            throw new StudentException(ExceptionErrorCode.DateError.DATE_007.getCode(), e.getMessage());
+            throw new StudentException(ExceptionErrorCode.DateError.DATE_007.getCode(), ExceptionErrorCode.DateError.DATE_007.getMessage());
         }
     }
     public static String convertDateToString(Date date){
