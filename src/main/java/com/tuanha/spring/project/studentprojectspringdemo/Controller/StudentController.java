@@ -1,11 +1,16 @@
 package com.tuanha.spring.project.studentprojectspringdemo.Controller;
 
 import com.tuanha.spring.project.studentprojectspringdemo.Dto.StudentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.Entity.Student;
 import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionErrorCode;
 import com.tuanha.spring.project.studentprojectspringdemo.Service.StudentService;
+import com.tuanha.spring.project.studentprojectspringdemo.StudentException;
 import com.tuanha.spring.project.studentprojectspringdemo.Utils.ResBody;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,15 +22,21 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping(value = "/getAll")
-    public List<StudentDTO> getAllStudent(){
+    public List<StudentDTO> getAllStudent() {
         return studentService.getAllStudent();
     }
 
     @PostMapping(value = "/save-student")
-    public ResBody saveStudent(@RequestBody StudentDTO studentDTO){
-        studentService.saveStudent(studentDTO);
-        return new ResBody(ExceptionErrorCode.StudentMessage.STU_001.getCode()
-                , ExceptionErrorCode.StudentMessage.STU_001.getMessage());
+    public ResponseEntity<ResBody> saveStudent(@RequestBody StudentDTO studentDTO) {
+        try {
+            studentService.saveStudent(studentDTO);
+            return new ResponseEntity<>(new ResBody(ExceptionErrorCode.StudentMessage.STU_001.getCode()
+                    , ExceptionErrorCode.StudentMessage.STU_001.getMessage()), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResBody(
+                    ExceptionErrorCode.StudentMessage.STU_010.getCode(),
+                    ExceptionErrorCode.StudentMessage.STU_010.getMessage()));
+        }
     }
 
 }

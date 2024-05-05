@@ -36,7 +36,11 @@ public enum ExceptionErrorCode {
     public enum StudentMessage {
         STU_001(Action.SAVE.value + " " + Message.STUDENT.value + " successful", "001"),
         STU_002(Action.UPDATE.value + " " + Message.STUDENT.value + " successful", "002"),
-        STU_003(Action.DELETE.value + " " + Message.STUDENT.value + " successful", "003");
+        STU_003(Action.DELETE.value + " " + Message.STUDENT.value + " successful", "003"),
+        STU_010(Action.SAVE.value + " " + Message.STUDENT.value + " fail", "011"),
+        STU_011(Action.UPDATE.value + " " + Message.STUDENT.value + " fail", "012"),
+        STU_012(Action.DELETE.value + " " + Message.STUDENT.value + " fail", "013")
+        ;
 
         private final String message;
         private final String code;
