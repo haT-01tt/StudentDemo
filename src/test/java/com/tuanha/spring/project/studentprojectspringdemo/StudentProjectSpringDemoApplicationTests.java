@@ -20,8 +20,6 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class StudentProjectSpringDemoApplicationTests {
 
-    @Mock
-    private GenericService<Student> repo;
     @InjectMocks
     private StudentService studentService;
 

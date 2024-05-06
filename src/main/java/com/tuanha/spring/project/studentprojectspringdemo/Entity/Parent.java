@@ -15,7 +15,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "parent_student")
-public class ParentStudent extends AbstractClassEntity {
+public class Parent extends AbstractClassEntity {
     @Column(name = "job_parent_student")
-    private String job;
+    String job;
+
+    @Column(name = "id_student")
+    Long idStudent;
+
+    @Column(name = "id_study")
+    Long idStudy;
 }
