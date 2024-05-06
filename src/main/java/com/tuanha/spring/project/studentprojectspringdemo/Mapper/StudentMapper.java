@@ -47,6 +47,15 @@ public class StudentMapper implements
                 })
                 .collect(Collectors.toList());
     }
+    public Function<List<StudentDTO>, List<Student>> listDTOToEntity() {
+        return entities -> entities.stream()
+                .map(student -> {
+                    Student stu = new Student();
+                    mapperDtoToEntity(student).accept(stu);
+                    return stu;
+                })
+                .collect(Collectors.toList());
+    }
     public Function<Student, StudentDTO> entityToDTO() {
         return student -> {
             StudentDTO studentDTO = new StudentDTO();
@@ -60,6 +69,18 @@ public class StudentMapper implements
             studentDTO.setCreateAt(DateUtils.convertDateToString(student.getCreateAt()));
             studentDTO.setUpdateAt(DateUtils.convertDateToString(student.getUpdateAt()));
             BeanUtils.copyProperties(student, studentDTO);
+        };
+    }
+    public Consumer<Student> mapperDtoToEntity(StudentDTO studentDTO){
+        return entity -> {
+            try {
+                if(studentDTO.getYearStudy() != null) entity.setYearStudy(DateUtils.convertStringToDate(studentDTO.getYearStudy()));
+                if(studentDTO.getCreateAt() != null) entity.setCreateAt(DateUtils.convertStringToDate(studentDTO.getCreateAt()));
+                if(studentDTO.getUpdateAt() != null) entity.setUpdateAt(DateUtils.convertStringToDate(studentDTO.getUpdateAt()));
+            } catch (StudentException e) {
+                throw new RuntimeException(e);
+            }
+            BeanUtils.copyProperties(entity, studentDTO);
         };
     }
 }

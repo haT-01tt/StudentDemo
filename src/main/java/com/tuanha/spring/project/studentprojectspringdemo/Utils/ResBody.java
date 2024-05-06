@@ -20,4 +20,5 @@ public class ResBody<T> {
         this.code = code;
         this.message = message;
     }
+
 }

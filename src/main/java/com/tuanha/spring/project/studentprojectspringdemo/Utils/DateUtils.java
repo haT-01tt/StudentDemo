@@ -1,6 +1,6 @@
 package com.tuanha.spring.project.studentprojectspringdemo.Utils;
 
-import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionErrorCode;
+import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionCode;
 import com.tuanha.spring.project.studentprojectspringdemo.StudentException;
 
 import java.text.ParseException;
@@ -13,7 +13,7 @@ public class DateUtils {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             return dateFormat.parse(oneDate);
         } catch (ParseException e) {
-            throw new StudentException(ExceptionErrorCode.DateError.DATE_007.getCode(), ExceptionErrorCode.DateError.DATE_007.getMessage());
+            throw new StudentException(ExceptionCode.DateError.DATE_007.getCode(), ExceptionCode.DateError.DATE_007.getMessage());
         }
     }
     public static String convertDateToString(Date date){

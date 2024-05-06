@@ -2,13 +2,10 @@ package com.tuanha.spring.project.studentprojectspringdemo.Controller;
 
 import com.tuanha.spring.project.studentprojectspringdemo.Dto.StudentDTO;
 import com.tuanha.spring.project.studentprojectspringdemo.Entity.Student;
-import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionErrorCode;
+import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionCode;
 import com.tuanha.spring.project.studentprojectspringdemo.Service.StudentService;
-import com.tuanha.spring.project.studentprojectspringdemo.StudentException;
 import com.tuanha.spring.project.studentprojectspringdemo.Utils.ResBody;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +19,11 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping(value = "/getAll")
-    public List<StudentDTO> getAllStudent() {
-        return studentService.getAllStudent();
+    public ResponseEntity<ResBody<List<StudentDTO>>> getAllStudent() {
+        return
+                new ResponseEntity<>(
+                        new ResBody<>(studentService.getAllStudent(), ExceptionCode.StudentMessage.STU_013.getCode(),
+                                ExceptionCode.StudentMessage.STU_013.getMessage()), HttpStatus.OK);
     }
 
     @PostMapping(value = "/save-student")
@@ -31,12 +31,12 @@ public class StudentController {
         try {
             return new ResponseEntity<>(
                     new ResBody(studentService.saveStudent(studentDTO),
-                            ExceptionErrorCode.StudentMessage.STU_001.getCode(),
-                            ExceptionErrorCode.StudentMessage.STU_001.getMessage()), HttpStatus.OK);
+                            ExceptionCode.StudentMessage.STU_001.getCode(),
+                            ExceptionCode.StudentMessage.STU_001.getMessage()), HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResBody(ExceptionErrorCode.StudentMessage.STU_010.getCode(),
-                    ExceptionErrorCode.StudentMessage.STU_010.getMessage()));
+                    new ResBody(ExceptionCode.StudentMessage.STU_010.getCode(),
+                            ExceptionCode.StudentMessage.STU_010.getMessage()));
         }
     }
 
@@ -46,12 +46,12 @@ public class StudentController {
             return
                     new ResponseEntity<>(
                             new ResBody(studentService.getByIdStudent(id),
-                                    ExceptionErrorCode.StudentMessage.STU_013.getCode(),
-                                    ExceptionErrorCode.StudentMessage.STU_013.getMessage()), HttpStatus.OK);
+                                    ExceptionCode.StudentMessage.STU_013.getCode(),
+                                    ExceptionCode.StudentMessage.STU_013.getMessage()), HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResBody(
-                    ExceptionErrorCode.StudentMessage.STU_014.getCode(),
-                    ExceptionErrorCode.StudentMessage.STU_014.getMessage()));
+                    ExceptionCode.StudentMessage.STU_014.getCode(),
+                    ExceptionCode.StudentMessage.STU_014.getMessage()));
         }
     }
 
