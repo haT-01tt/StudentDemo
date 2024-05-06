@@ -18,7 +18,8 @@ public enum ExceptionCode {
     private enum Message {
         STUDENT("Student"),
         SOT("SOT"),
-        CLASSIFY_STUDENTS("Classify Students");
+        CLASSIFY_STUDENTS("Classify Students"),
+        PARENT_STUDENT("Parent Student");
 
         private final String value;
     }
@@ -78,5 +79,23 @@ public enum ExceptionCode {
 
         private final String message;
         private final String code;
+    }
+
+    @AllArgsConstructor
+    @Getter
+    public enum ParentStudentMessage {
+        PR_STU_001(Action.SAVE.value + " " + Message.PARENT_STUDENT.value + " successful", "001"),
+        PR_STU_002(Action.UPDATE.value + " " + Message.PARENT_STUDENT.value + " successful", "002"),
+        PR_STU_003(Action.DELETE.value + " " + Message.PARENT_STUDENT.value + " successful", "003"),
+        PR_STU_010(Action.SAVE.value + " " + Message.PARENT_STUDENT.value + " fail", "010"),
+        PR_STU_011(Action.UPDATE.value + " " + Message.PARENT_STUDENT.value + " fail", "011"),
+        PR_STU_012(Action.DELETE.value + " " + Message.PARENT_STUDENT.value + " fail", "012"),
+        PR_STU_013(Action.FIND.value + " " + Message.PARENT_STUDENT.value + " successful", "013"),
+        PR_STU_014(Action.NOT_FOUND.value + " " + Message.PARENT_STUDENT.value + " fail", "014")
+        ;
+
+        private final String message;
+        private final String code;
+
     }
 }
