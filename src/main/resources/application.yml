@@ -1,0 +1,4 @@
+# IF YOU WANT USING THIS FILE, YOU MUST RENAME IT TO application.properties
+spring:
+  profiles:
+    active: tuan

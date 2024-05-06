@@ -1,7 +1,7 @@
 package com.tuanha.spring.project.studentprojectspringdemo;
 
-import com.tuanha.spring.project.studentprojectspringdemo.Dto.StudentDTO;
-import com.tuanha.spring.project.studentprojectspringdemo.Service.StudentService;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.service.StudentService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
