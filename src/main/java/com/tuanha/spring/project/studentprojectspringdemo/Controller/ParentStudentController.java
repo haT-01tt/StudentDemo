@@ -2,7 +2,7 @@ package com.tuanha.spring.project.studentprojectspringdemo.Controller;
 
 import com.tuanha.spring.project.studentprojectspringdemo.Dto.ParentStudentDTO;
 import com.tuanha.spring.project.studentprojectspringdemo.Entity.Parent;
-import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionErrorCode;
+import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionCode;
 import com.tuanha.spring.project.studentprojectspringdemo.Service.ParentStudentService;
 import com.tuanha.spring.project.studentprojectspringdemo.Utils.ResBody;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionErrorCode.ParentStudentMessage.PR_STU_013;
+import static com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionCode.ParentStudentMessage.PR_STU_013;
 
 @RestController
 @RequestMapping("/api/parent-student")
@@ -30,12 +30,12 @@ public class ParentStudentController {
         try {
             return new ResponseEntity<>(
                     new ResBody(service.save(parentStudentDTO),
-                            ExceptionErrorCode.ParentStudentMessage.PR_STU_001.getCode(),
-                            ExceptionErrorCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
+                            ExceptionCode.ParentStudentMessage.PR_STU_001.getCode(),
+                            ExceptionCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResBody(ExceptionErrorCode.ParentStudentMessage.PR_STU_010.getCode(),
-                            ExceptionErrorCode.ParentStudentMessage.PR_STU_010.getMessage()));
+                    new ResBody(ExceptionCode.ParentStudentMessage.PR_STU_010.getCode(),
+                            ExceptionCode.ParentStudentMessage.PR_STU_010.getMessage()));
         }
     }
 }

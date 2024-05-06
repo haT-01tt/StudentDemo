@@ -2,7 +2,7 @@ package com.tuanha.spring.project.studentprojectspringdemo.Controller;
 
 import com.tuanha.spring.project.studentprojectspringdemo.Dto.ParentDTO;
 import com.tuanha.spring.project.studentprojectspringdemo.Entity.Parent;
-import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionErrorCode;
+import com.tuanha.spring.project.studentprojectspringdemo.Enum.ExceptionCode;
 import com.tuanha.spring.project.studentprojectspringdemo.Service.ParentService;
 import com.tuanha.spring.project.studentprojectspringdemo.Utils.ResBody;
 import lombok.AccessLevel;
@@ -31,12 +31,12 @@ public class ParentController {
         try {
             return new ResponseEntity<>(
                     new ResBody (parentService.saveParentStudent(parentDTO),
-                    ExceptionErrorCode.ParentStudentMessage.PR_STU_001.getCode(),
-                    ExceptionErrorCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
+                            ExceptionCode.ParentStudentMessage.PR_STU_001.getCode(),
+                            ExceptionCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResBody(ExceptionErrorCode.ParentStudentMessage.PR_STU_010.getCode(),
-                    ExceptionErrorCode.ParentStudentMessage.PR_STU_010.getMessage()));
+                    new ResBody(ExceptionCode.ParentStudentMessage.PR_STU_010.getCode(),
+                            ExceptionCode.ParentStudentMessage.PR_STU_010.getMessage()));
         }
     }
 
@@ -45,12 +45,12 @@ public class ParentController {
         try {
             return new ResponseEntity<>(
                     new ResBody(parentService.getByIdParentStudent(id),
-                    ExceptionErrorCode.ParentStudentMessage.PR_STU_013.getCode(),
-                    ExceptionErrorCode.ParentStudentMessage.PR_STU_013.getMessage()), HttpStatus.OK);
+                            ExceptionCode.ParentStudentMessage.PR_STU_013.getCode(),
+                            ExceptionCode.ParentStudentMessage.PR_STU_013.getMessage()), HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ResBody(ExceptionErrorCode.ParentStudentMessage.PR_STU_014.getCode(),
-                    ExceptionErrorCode.ParentStudentMessage.PR_STU_014.getMessage()));
+                    new ResBody(ExceptionCode.ParentStudentMessage.PR_STU_014.getCode(),
+                            ExceptionCode.ParentStudentMessage.PR_STU_014.getMessage()));
         }
     }
 
@@ -59,12 +59,12 @@ public class ParentController {
         try {
             return new ResponseEntity<>(
                     new ResBody(parentService.saveParent(parentDTO),
-                    ExceptionErrorCode.ParentStudentMessage.PR_STU_001.getCode(),
-                    ExceptionErrorCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
+                            ExceptionCode.ParentStudentMessage.PR_STU_001.getCode(),
+                            ExceptionCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResBody(ExceptionErrorCode.ParentStudentMessage.PR_STU_010.getCode(),
-                    ExceptionErrorCode.ParentStudentMessage.PR_STU_010.getMessage()));
+                    new ResBody(ExceptionCode.ParentStudentMessage.PR_STU_010.getCode(),
+                            ExceptionCode.ParentStudentMessage.PR_STU_010.getMessage()));
         }
     }
 }

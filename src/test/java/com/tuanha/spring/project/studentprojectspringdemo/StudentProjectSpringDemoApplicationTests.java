@@ -1,21 +1,15 @@
 package com.tuanha.spring.project.studentprojectspringdemo;
 
 import com.tuanha.spring.project.studentprojectspringdemo.Dto.StudentDTO;
-import com.tuanha.spring.project.studentprojectspringdemo.Entity.Student;
-import com.tuanha.spring.project.studentprojectspringdemo.Repo.GenericService;
 import com.tuanha.spring.project.studentprojectspringdemo.Service.StudentService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class StudentProjectSpringDemoApplicationTests {
