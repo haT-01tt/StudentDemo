@@ -1,6 +1,6 @@
 package com.tuanha.spring.project.studentprojectspringdemo.mapper;
 
-import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentDto;
 import com.tuanha.spring.project.studentprojectspringdemo.entity.Parent;
 import com.tuanha.spring.project.studentprojectspringdemo.repo.MappingEntityToDTO;
 import com.tuanha.spring.project.studentprojectspringdemo.exceptionstudent.StudentException;
@@ -14,9 +14,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
-public class ParentMapper implements MappingEntityToDTO<ParentDTO, Parent> {
+public class ParentMapper implements MappingEntityToDTO<ParentDto, Parent> {
     @Override
-    public Function<ParentDTO, Parent> dtoEntity() {
+    public Function<ParentDto, Parent> dtoEntity() {
         return dto -> {
             Parent parent = new Parent();
             try {
@@ -37,15 +37,15 @@ public class ParentMapper implements MappingEntityToDTO<ParentDTO, Parent> {
         };
     }
 
-    public Function<Parent, ParentDTO> entityToDTO() {
+    public Function<Parent, ParentDto> entityToDTO() {
         return parent -> {
-            ParentDTO parentDTO = new ParentDTO();
+            ParentDto parentDTO = new ParentDto();
             mapperEntityToDto(parent).accept(parentDTO);
             return parentDTO;
         };
     }
 
-    public Consumer<ParentDTO> mapperEntityToDto(Parent parent){
+    public Consumer<ParentDto> mapperEntityToDto(Parent parent){
         return parentDTO -> {
             parentDTO.setJob(parent.getJob());
             parentDTO.setCreateAt(DateUtils.convertDateToString(parent.getCreateAt()));
@@ -54,10 +54,10 @@ public class ParentMapper implements MappingEntityToDTO<ParentDTO, Parent> {
         };
     }
 
-    public Function<List<Parent>, List<ParentDTO>> listEntityToDTO (){
+    public Function<List<Parent>, List<ParentDto>> listEntityToDTO (){
         return entities -> entities.stream()
                 .map(parent -> {
-                    ParentDTO parentDTO = new ParentDTO();
+                    ParentDto parentDTO = new ParentDto();
                     mapperEntityToDto(parent).accept(parentDTO);
                     return parentDTO;
                 })

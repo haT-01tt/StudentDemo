@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ParentStudentDTO {
-    List<StudentDTO> studentDTO;
-    ParentDTO parentDTO;
+public class ParentStudentDto {
+    List<StudentDto> studentDTO;
+    ParentDto parentDTO;
 }

@@ -1,6 +1,6 @@
 package com.tuanha.spring.project.studentprojectspringdemo;
 
-import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDto;
 import com.tuanha.spring.project.studentprojectspringdemo.service.StudentService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -23,13 +23,13 @@ class StudentProjectSpringDemoApplicationTests {
 
     @Test
     public void testFindAll() {
-        List<StudentDTO> result = studentService.getAllStudent();
+        List<StudentDto> result = studentService.getAllStudent();
         assertEquals(0, result.size());
     }
 
     @Test
     public void testInsertStudent(){
-        StudentDTO studentDTO = new StudentDTO();
+        StudentDto studentDTO = new StudentDto();
         studentDTO.setStudentCode("STU-CDO-001");
         studentDTO.setName("Phuong Nguyen");
         studentDTO.setAddress("Lang Giang - Bac Giang");

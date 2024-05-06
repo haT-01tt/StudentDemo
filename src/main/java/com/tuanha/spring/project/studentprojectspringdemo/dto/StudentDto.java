@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class StudentDTO extends GeneralDTO{
+public class StudentDto extends GeneralModelDto {
     @NotBlank(message = "Student code can't empty")
     private String studentCode;
     private String yearStudy;

@@ -1,8 +1,8 @@
 package com.tuanha.spring.project.studentprojectspringdemo.service;
 
-import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentDTO;
-import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentStudentDTO;
-import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentDto;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentStudentDto;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDto;
 import com.tuanha.spring.project.studentprojectspringdemo.entity.Parent;
 import com.tuanha.spring.project.studentprojectspringdemo.entity.Student;
 import com.tuanha.spring.project.studentprojectspringdemo.mapper.ParentMapper;
@@ -26,29 +26,29 @@ public class ParentStudentService {
     StudentService studentService;
     ParentService parentService;
 
-    public List<ParentStudentDTO> getAllParentStudent(Integer id) throws NotFoundException {
-        ParentDTO parentDTO = parentService.getAllById(id).orElseThrow(NotFoundException::new);
-        List<StudentDTO> studentDTOS = studentService.getAllById(List.of(parentDTO.getIdStudent()));
+    public List<ParentStudentDto> getAllParentStudent(Integer id) throws NotFoundException {
+        ParentDto parentDTO = parentService.getAllById(id).orElseThrow(NotFoundException::new);
+        List<StudentDto> studentDTOS = studentService.getAllById(List.of(parentDTO.getIdStudent()));
         return studentDTOS.stream().map(dto ->
                 createParentStudentDTO().apply(parentDTO, dto)).collect(Collectors.toList());
     }
 
-    public ParentStudentDTO save(ParentStudentDTO parentStudentDTO) {
+    public ParentStudentDto save(ParentStudentDto parentStudentDTO) {
         List<Student> students = studentService.saveStudents(parentStudentDTO.getStudentDTO());
         students.forEach(student -> parentStudentDTO.getParentDTO().setIdStudent(student.getId()));
         return listParentStudentDTO(parentStudentDTO).apply(parentService.saveParentStudent(parentStudentDTO.getParentDTO()), students);
     }
 
-    private BiFunction<ParentDTO, StudentDTO, ParentStudentDTO> createParentStudentDTO() {
+    private BiFunction<ParentDto, StudentDto, ParentStudentDto> createParentStudentDTO() {
         return (parent, student) -> {
-            ParentStudentDTO parentStudentDTO = new ParentStudentDTO();
+            ParentStudentDto parentStudentDTO = new ParentStudentDto();
             parentStudentDTO.setParentDTO(parent);
             parentStudentDTO.setStudentDTO(Collections.singletonList(student));
             return parentStudentDTO;
         };
     }
 
-    private BiFunction<Parent, List<Student>, ParentStudentDTO> listParentStudentDTO(ParentStudentDTO parentStudentDTO) {
+    private BiFunction<Parent, List<Student>, ParentStudentDto> listParentStudentDTO(ParentStudentDto parentStudentDTO) {
         return (parent, student) -> {
             parentStudentDTO.setParentDTO(parentMapper.entityToDTO().apply(parent));
             parentStudentDTO.setStudentDTO(studentMapper.listEntityToDTO().apply(student));

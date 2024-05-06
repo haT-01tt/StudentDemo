@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,7 +23,5 @@ public class Student extends AbstractClassEntity {
 
     @Column(name = "year_study")
     private Date yearStudy;
-
-
 
 }

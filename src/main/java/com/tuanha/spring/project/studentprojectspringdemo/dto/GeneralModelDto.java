@@ -1,15 +1,18 @@
 package com.tuanha.spring.project.studentprojectspringdemo.dto;
 
-import jakarta.validation.constraints.Max;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.Date;
+
 
 @Getter
 @Setter
-public class GeneralDTO {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class GeneralModelDto {
     private Integer id;
     @NotBlank(message = "Name can't be empty")
     @Length(min = 1, max = 20)
@@ -20,4 +23,5 @@ public class GeneralDTO {
     private String phoneNumber;
     private String createAt;
     private String updateAt;
+    private Date dateOfBirth;
 }

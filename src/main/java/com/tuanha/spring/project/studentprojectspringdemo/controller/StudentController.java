@@ -1,6 +1,6 @@
 package com.tuanha.spring.project.studentprojectspringdemo.controller;
 
-import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDto;
 import com.tuanha.spring.project.studentprojectspringdemo.entity.Student;
 import com.tuanha.spring.project.studentprojectspringdemo.enumstudent.ExceptionCode;
 import com.tuanha.spring.project.studentprojectspringdemo.service.StudentService;
@@ -20,7 +20,7 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping(value = "/getAll")
-    public ResponseEntity<ResBody<List<StudentDTO>>> getAllStudent() {
+    public ResponseEntity<ResBody<List<StudentDto>>> getAllStudent() {
         return
                 new ResponseEntity<>(
                         new ResBody<>(studentService.getAllStudent(), ExceptionCode.StudentMessage.STU_013.getCode(),
@@ -28,7 +28,7 @@ public class StudentController {
     }
 
     @PostMapping(value = "/save-student")
-    public ResponseEntity<ResBody<Student>> saveStudent(@Valid @RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<ResBody<Student>> saveStudent(@Valid @RequestBody StudentDto studentDTO) {
         try {
             return new ResponseEntity<>(
                     new ResBody(studentService.saveStudent(studentDTO),
@@ -42,7 +42,7 @@ public class StudentController {
     }
 
     @PostMapping(value = "/{id}/get-student")
-    public ResponseEntity<ResBody<StudentDTO>> getByIdStudent(@PathVariable("id") Integer id) {
+    public ResponseEntity<ResBody<StudentDto>> getByIdStudent(@PathVariable("id") Integer id) {
         try {
             return
                     new ResponseEntity<>(

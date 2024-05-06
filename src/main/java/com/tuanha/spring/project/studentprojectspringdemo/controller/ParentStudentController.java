@@ -1,6 +1,6 @@
 package com.tuanha.spring.project.studentprojectspringdemo.controller;
 
-import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentStudentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentStudentDto;
 import com.tuanha.spring.project.studentprojectspringdemo.entity.Parent;
 import com.tuanha.spring.project.studentprojectspringdemo.enumstudent.ExceptionCode;
 import com.tuanha.spring.project.studentprojectspringdemo.service.ParentStudentService;
@@ -21,12 +21,12 @@ public class ParentStudentController {
     @Autowired
     ParentStudentService service;
     @GetMapping("/{id}/get-all")
-    public ResponseEntity<ResBody<List<ParentStudentDTO>>> getParentStudentDTOS(@PathVariable("id") Integer id) throws NotFoundException {
+    public ResponseEntity<ResBody<List<ParentStudentDto>>> getParentStudentDTOS(@PathVariable("id") Integer id) throws NotFoundException {
         return new ResponseEntity<>(new ResBody<>(service.getAllParentStudent(id),PR_STU_013.getCode(), PR_STU_013.getMessage()), HttpStatus.OK);
     }
 
     @PostMapping("/save")
-    public ResponseEntity<ResBody<Parent>> saveParentStudent(@RequestBody ParentStudentDTO parentStudentDTO) {
+    public ResponseEntity<ResBody<Parent>> saveParentStudent(@RequestBody ParentStudentDto parentStudentDTO) {
         try {
             return new ResponseEntity<>(
                     new ResBody(service.save(parentStudentDTO),

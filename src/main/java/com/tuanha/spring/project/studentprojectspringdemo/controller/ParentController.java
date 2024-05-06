@@ -1,6 +1,6 @@
 package com.tuanha.spring.project.studentprojectspringdemo.controller;
 
-import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentDto;
 import com.tuanha.spring.project.studentprojectspringdemo.entity.Parent;
 import com.tuanha.spring.project.studentprojectspringdemo.enumstudent.ExceptionCode;
 import com.tuanha.spring.project.studentprojectspringdemo.service.ParentService;
@@ -22,12 +22,12 @@ public class ParentController {
     ParentService parentService;
 
     @GetMapping(value = "/getAll")
-    public List<ParentDTO> getAllParentStudent() {
+    public List<ParentDto> getAllParentStudent() {
         return parentService.getAllParentStudent();
     }
 
     @PostMapping(value = "/save")
-    public ResponseEntity<ResBody<Parent>> saveParentStudent (@RequestBody ParentDTO parentDTO) {
+    public ResponseEntity<ResBody<Parent>> saveParentStudent (@RequestBody ParentDto parentDTO) {
         try {
             return new ResponseEntity<>(
                     new ResBody (parentService.saveParentStudent(parentDTO),
@@ -41,7 +41,7 @@ public class ParentController {
     }
 
     @GetMapping(value = "/{id}/get")
-    public ResponseEntity<ResBody<ParentDTO>> getByIdParentStudent(@PathVariable("id") Integer id) {
+    public ResponseEntity<ResBody<ParentDto>> getByIdParentStudent(@PathVariable("id") Integer id) {
         try {
             return new ResponseEntity<>(
                     new ResBody(parentService.getByIdParentStudent(id),
@@ -55,7 +55,7 @@ public class ParentController {
     }
 
     @PostMapping(value = "/save-parent")
-    public ResponseEntity<ResBody<Parent>> saveParent (@RequestBody ParentDTO parentDTO) {
+    public ResponseEntity<ResBody<Parent>> saveParent (@RequestBody ParentDto parentDTO) {
         try {
             return new ResponseEntity<>(
                     new ResBody(parentService.saveParent(parentDTO),

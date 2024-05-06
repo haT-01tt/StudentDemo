@@ -1,6 +1,6 @@
 package com.tuanha.spring.project.studentprojectspringdemo.mapper;
 
-import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDto;
 import com.tuanha.spring.project.studentprojectspringdemo.entity.Student;
 import com.tuanha.spring.project.studentprojectspringdemo.repo.MappingEntityToDTO;
 import com.tuanha.spring.project.studentprojectspringdemo.exceptionstudent.StudentException;
@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class StudentMapper implements
-        MappingEntityToDTO<StudentDTO, Student> {
+        MappingEntityToDTO<StudentDto, Student> {
     @Override
-    public Function<StudentDTO, Student> dtoEntity() {
+    public Function<StudentDto, Student> dtoEntity() {
         return dto -> {
             Student student = new Student();
             try {
@@ -38,16 +38,16 @@ public class StudentMapper implements
         };
     }
 
-    public Function<List<Student>, List<StudentDTO>> listEntityToDTO() {
+    public Function<List<Student>, List<StudentDto>> listEntityToDTO() {
         return entities -> entities.stream()
                 .map(student -> {
-                    StudentDTO studentDTO = new StudentDTO();
+                    StudentDto studentDTO = new StudentDto();
                     mapperEntityToDto(student).accept(studentDTO);
                     return studentDTO;
                 })
                 .collect(Collectors.toList());
     }
-    public Function<List<StudentDTO>, List<Student>> listDTOToEntity() {
+    public Function<List<StudentDto>, List<Student>> listDTOToEntity() {
         return entities -> entities.stream()
                 .map(student -> {
                     Student stu = new Student();
@@ -56,14 +56,14 @@ public class StudentMapper implements
                 })
                 .collect(Collectors.toList());
     }
-    public Function<Student, StudentDTO> entityToDTO() {
+    public Function<Student, StudentDto> entityToDTO() {
         return student -> {
-            StudentDTO studentDTO = new StudentDTO();
+            StudentDto studentDTO = new StudentDto();
             mapperEntityToDto(student).accept(studentDTO);
             return studentDTO;
         };
     }
-    public Consumer<StudentDTO> mapperEntityToDto(Student student){
+    public Consumer<StudentDto> mapperEntityToDto(Student student){
         return studentDTO -> {
             studentDTO.setYearStudy(DateUtils.convertDateToString(student.getYearStudy()));
             studentDTO.setCreateAt(DateUtils.convertDateToString(student.getCreateAt()));
@@ -71,7 +71,7 @@ public class StudentMapper implements
             BeanUtils.copyProperties(student, studentDTO);
         };
     }
-    public Consumer<Student> mapperDtoToEntity(StudentDTO studentDTO){
+    public Consumer<Student> mapperDtoToEntity(StudentDto studentDTO){
         return entity -> {
             try {
                 if(studentDTO.getYearStudy() != null) entity.setYearStudy(DateUtils.convertStringToDate(studentDTO.getYearStudy()));

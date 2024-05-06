@@ -1,6 +1,6 @@
 package com.tuanha.spring.project.studentprojectspringdemo.service;
 
-import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentDTO;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentDto;
 import com.tuanha.spring.project.studentprojectspringdemo.entity.Parent;
 import com.tuanha.spring.project.studentprojectspringdemo.mapper.ParentMapper;
 import com.tuanha.spring.project.studentprojectspringdemo.repo.ParentRepository;
@@ -18,34 +18,34 @@ public class ParentService {
     ParentRepository parentRepository;
     ParentMapper mapper;
 
-    public Parent saveParentStudent(ParentDTO parentDTO) {
+    public Parent saveParentStudent(ParentDto parentDTO) {
         return parentRepository.save(mapper.dtoEntity().apply(parentDTO));
     }
 
-    public ParentDTO getByIdParentStudent(Integer id) {
+    public ParentDto getByIdParentStudent(Integer id) {
         return mapper.entityToDTO().apply(parentRepository.findById(id).orElse(null));
     }
 
-    public List<ParentDTO> getAllParentStudent() {
+    public List<ParentDto> getAllParentStudent() {
         return mapper.listEntityToDTO().apply(parentRepository.findAll());
     }
-    public List<ParentDTO> getAllById(List<Integer> ids) {
+    public List<ParentDto> getAllById(List<Integer> ids) {
         return mapper.listEntityToDTO().apply(parentRepository.findAllById(ids));
     }
 
     //JPA Repository
-    public Parent saveParent(ParentDTO parentDTO){
+    public Parent saveParent(ParentDto parentDTO){
         return parentRepository.save(mapper.dtoEntity().apply(parentDTO));
     }
 
-    public List<ParentDTO> getAllParent(){
+    public List<ParentDto> getAllParent(){
         return mapper.listEntityToDTO().apply(parentRepository.findAll());
     }
 
-    public ParentDTO getByIdParent(Integer id){
+    public ParentDto getByIdParent(Integer id){
         return mapper.entityToDTO().apply(parentRepository.findById(id).get());
     }
-    public Optional<ParentDTO> getAllById(Integer idStudent){
+    public Optional<ParentDto> getAllById(Integer idStudent){
         return Optional.ofNullable(mapper.entityToDTO().apply(parentRepository.findAllByIdStudent(idStudent).get()));
     }
 
