@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE, makeFinal = true)
@@ -17,5 +19,13 @@ public class BonusStudentService {
 
     public BonusStudent saveBonus(BonusStudentModelDto dto){
         return bonusStudentRepository.save(mapper.dtoEntity().apply(dto));
+    }
+
+    public BonusStudentModelDto getByIdBonus(Integer id){
+        return mapper.entityToDto().apply(bonusStudentRepository.findById(id).orElse(null));
+    }
+
+    public List<BonusStudentModelDto> getAllBonus(){
+        return mapper.listEntityToDto().apply(bonusStudentRepository.findAll());
     }
 }
