@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @ControllerAdvice
 public class HandleExceptionDatabase {
@@ -22,15 +20,5 @@ public class HandleExceptionDatabase {
                         .description(HttpStatus.BAD_GATEWAY.getReasonPhrase().toUpperCase())
                         .timestamp(new Date())
                         .build());
-    }
-
-
-    private String extractFieldNameFromException(InvalidDataAccessResourceUsageException ex) {
-        Matcher matcher = Pattern.compile("Unknown column '(\\w+)' in 'field list'").matcher(ex.getMessage());
-        return matcher.find() ? matcher.group(1) : "";
-    }
-
-    private String getMessage(Exception e) {
-        return e.getMessage().substring(e.getMessage().lastIndexOf("[") + 1, e.getMessage().lastIndexOf("]") - 1);
     }
 }

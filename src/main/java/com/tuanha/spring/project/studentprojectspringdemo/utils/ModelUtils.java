@@ -2,8 +2,13 @@ package com.tuanha.spring.project.studentprojectspringdemo.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
+import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 @Component
 public class ModelUtils {
@@ -25,5 +30,9 @@ public class ModelUtils {
         String url = request.getRequestURI();
         String methodName = joinPoint.getSignature().getName();
         return url + " - " + methodName;
+    }
+    private String extractFieldNameFromException(InvalidDataAccessResourceUsageException ex) {
+        Matcher matcher = Pattern.compile("Unknown column '(\\w+)' in 'field list'").matcher(ex.getMessage());
+        return matcher.find() ? matcher.group(1) : "";
     }
 }
