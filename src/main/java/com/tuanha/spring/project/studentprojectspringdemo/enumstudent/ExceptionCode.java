@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum ExceptionCode {
     IN("Save successful", "INS"),
     UP("Update successful", "UPD"),
-    DE("Delete successful", "DEL");
+    DE("Delete successful", "DEL"),
+    FIND("Find successful", "FIND");
 
     private final String message;
     private final String code;
