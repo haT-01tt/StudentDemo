@@ -26,16 +26,11 @@ public class ParentStudentController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<ResBody<Parent>> saveParentStudent(@RequestBody ParentStudentDto parentStudentDTO) {
-        try {
+    public ResponseEntity<ResBody<?>> saveParentStudent(@RequestBody ParentStudentDto parentStudentDTO) {
             return new ResponseEntity<>(
-                    new ResBody(service.save(parentStudentDTO),
+                    new ResBody<>(service.save(parentStudentDTO),
                             ExceptionCode.ParentStudentMessage.PR_STU_001.getCode(),
                             ExceptionCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResBody(ExceptionCode.ParentStudentMessage.PR_STU_010.getCode(),
-                            ExceptionCode.ParentStudentMessage.PR_STU_010.getMessage()));
-        }
+
     }
 }

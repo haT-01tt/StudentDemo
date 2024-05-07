@@ -14,5 +14,6 @@ public class ErrorResponse {
     private String code;
     private String message;
     private String description;
+    private String path;
     private Date timestamp;
 }
