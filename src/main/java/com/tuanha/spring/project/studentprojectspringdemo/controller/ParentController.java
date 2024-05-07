@@ -28,43 +28,25 @@ public class ParentController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<ResBody<Parent>> saveParentStudent (@RequestBody ParentDto parentDTO) {
-        try {
             return new ResponseEntity<>(
-                    new ResBody (parentService.saveParentStudent(parentDTO),
+                    new ResBody<> (parentService.saveParentStudent(parentDTO),
                             ExceptionCode.ParentStudentMessage.PR_STU_001.getCode(),
                             ExceptionCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResBody(ExceptionCode.ParentStudentMessage.PR_STU_010.getCode(),
-                            ExceptionCode.ParentStudentMessage.PR_STU_010.getMessage()));
-        }
     }
 
     @GetMapping(value = "/{id}/get")
     public ResponseEntity<ResBody<ParentDto>> getByIdParentStudent(@PathVariable("id") Integer id) {
-        try {
             return new ResponseEntity<>(
-                    new ResBody(parentService.getByIdParentStudent(id),
+                    new ResBody<>(parentService.getByIdParentStudent(id),
                             ExceptionCode.ParentStudentMessage.PR_STU_013.getCode(),
                             ExceptionCode.ParentStudentMessage.PR_STU_013.getMessage()), HttpStatus.OK);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ResBody(ExceptionCode.ParentStudentMessage.PR_STU_014.getCode(),
-                            ExceptionCode.ParentStudentMessage.PR_STU_014.getMessage()));
-        }
     }
 
     @PostMapping(value = "/save-parent")
     public ResponseEntity<ResBody<Parent>> saveParent (@RequestBody ParentDto parentDTO) {
-        try {
             return new ResponseEntity<>(
-                    new ResBody(parentService.saveParent(parentDTO),
+                    new ResBody<>(parentService.saveParent(parentDTO),
                             ExceptionCode.ParentStudentMessage.PR_STU_001.getCode(),
                             ExceptionCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResBody(ExceptionCode.ParentStudentMessage.PR_STU_010.getCode(),
-                            ExceptionCode.ParentStudentMessage.PR_STU_010.getMessage()));
-        }
     }
 }

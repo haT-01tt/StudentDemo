@@ -21,4 +21,10 @@ public class Subject extends AbstractClass {
 
     @Column(name = "semester")
     Integer semester;
+
+    @Column(name = "credits")
+    Integer creadits;
+
+//    @Column(name = "is_prerequisite")
+//    boolean isPrerequisite;
 }
