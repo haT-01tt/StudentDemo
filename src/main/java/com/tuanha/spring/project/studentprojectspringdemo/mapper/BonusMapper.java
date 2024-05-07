@@ -1,6 +1,6 @@
 package com.tuanha.spring.project.studentprojectspringdemo.mapper;
 
-import com.tuanha.spring.project.studentprojectspringdemo.dto.BonusStudentModelDto;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.BonusStudentDto;
 import com.tuanha.spring.project.studentprojectspringdemo.entity.BonusStudent;
 import com.tuanha.spring.project.studentprojectspringdemo.exceptionstudent.StudentException;
 import com.tuanha.spring.project.studentprojectspringdemo.repo.MappingEntityToDTO;
@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 
 
 @Component
-public class BonusMapper implements MappingEntityToDTO<BonusStudentModelDto, BonusStudent> {
+public class BonusMapper implements MappingEntityToDTO<BonusStudentDto, BonusStudent> {
     @Override
-    public Function<BonusStudentModelDto, BonusStudent> dtoEntity() {
+    public Function<BonusStudentDto, BonusStudent> dtoEntity() {
         return dto -> {
             BonusStudent entity = new BonusStudent();
             try {
@@ -38,15 +38,15 @@ public class BonusMapper implements MappingEntityToDTO<BonusStudentModelDto, Bon
         };
     }
 
-    public Function<BonusStudent, BonusStudentModelDto> entityToDto() {
+    public Function<BonusStudent, BonusStudentDto> entityToDto() {
         return entity -> {
-            BonusStudentModelDto dto = new BonusStudentModelDto();
+            BonusStudentDto dto = new BonusStudentDto();
             mapperEntityToDto(entity).accept(dto);
             return dto;
         };
     }
 
-    public Consumer<BonusStudentModelDto> mapperEntityToDto(BonusStudent entity){
+    public Consumer<BonusStudentDto> mapperEntityToDto(BonusStudent entity){
         return dto -> {
             dto.setCreateAt(DateUtils.convertDateToString(entity.getCreateAt()));
             dto.setReceivedDate(DateUtils.convertDateToString(entity.getReceivedDate()));
@@ -55,10 +55,10 @@ public class BonusMapper implements MappingEntityToDTO<BonusStudentModelDto, Bon
         };
     }
 
-    public Function<List<BonusStudent>, List<BonusStudentModelDto>> listEntityToDto() {
+    public Function<List<BonusStudent>, List<BonusStudentDto>> listEntityToDto() {
         return entities -> entities.stream()
                 .map(entity -> {
-                    BonusStudentModelDto dto = new BonusStudentModelDto();
+                    BonusStudentDto dto = new BonusStudentDto();
                     mapperEntityToDto(entity).accept(dto);
                     return dto;
                 })

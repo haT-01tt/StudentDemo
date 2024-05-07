@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class BonusStudentModelDto extends GeneralDto implements Serializable {
+public class BonusStudentDto extends GeneralDto implements Serializable {
     private String receivedDate;
     private EnumModel activeBonus;
 }
