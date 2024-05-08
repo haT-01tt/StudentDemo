@@ -1,4 +1,4 @@
-package com.tuanha.spring.project.studentprojectspringdemo.servicelogger;
+package com.tuanha.spring.project.studentprojectspringdemo.ServiceLogger;
 import com.tuanha.spring.project.studentprojectspringdemo.custom.LogSaveOperation;
 import com.tuanha.spring.project.studentprojectspringdemo.custom.LogServicePerformance;
 import com.tuanha.spring.project.studentprojectspringdemo.utils.ModelUtils;
