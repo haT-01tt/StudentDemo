@@ -27,11 +27,6 @@ public class HandleExceptionStudent {
                     .build();
     }
 
-    /**
-     * Lấy ra message từ exception response
-     * Sẽ bắt đầu tu dau [  và kết thúc truoc dau ]
-     * @param e
-     * @return
-     */
+
 
 }

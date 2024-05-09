@@ -1,13 +1,16 @@
 spring:
   application:
-    name: StudentProjectSpringDemo
+    name: student-service
   ## Cau hinh ket noi database MySQL
+
+  config:
+    import: "optional:configserver:http://localhost:8083"
   datasource:
     url: jdbc:mysql://localhost:3306/studentdemo
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    generate-ddl: false
+    generate-ddl: true
 
 

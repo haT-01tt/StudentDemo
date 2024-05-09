@@ -16,7 +16,12 @@ public class ModelUtils {
     public String getPath(WebRequest request){
         return request.getDescription(false).replace("uri=", "");
     }
-    // Get MESSAGE when call api response ERROR
+    /**
+     * Lấy ra message từ exception response
+     * Sẽ bắt đầu tu dau [  và kết thúc truoc dau ]
+     * @param e
+     * @return
+     */
     public String getMessage(Exception e) {return e.getMessage().substring(e.getMessage().lastIndexOf("[") + 1, e.getMessage().lastIndexOf("]") - 1);
     }
 
