@@ -23,7 +23,7 @@ public class Subject extends AbstractClass {
     Integer semester;
 
     @Column(name = "credits")
-    Integer creadits;
+    Integer credits;
 
 //    @Column(name = "is_prerequisite")
 //    boolean isPrerequisite;
