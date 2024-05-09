@@ -27,12 +27,12 @@ public class StudentService {
 
     @LogSaveOperation("Save student")
     public Student saveStudent(StudentDto studentDTO){
-        return repo.save(FnMapper.createEntity(Student::new,
+        return repo.saveAndFlush(FnMapper.createEntity(Student::new,
                 student -> BeanUtils.copyProperties(studentDTO, student)));
     }
     @LogSaveOperation("Save list student")
     public List<Student> saveStudents(List<StudentDto> studentDTOS) {
-        return repo.saveAll(FnMapper.<StudentDto, Student>mapperList(Student::new).apply(studentDTOS));
+        return repo.saveAllAndFlush(FnMapper.<StudentDto, Student>mapperList(Student::new).apply(studentDTOS));
     }
     @LogServicePerformance("Find All Student")
     public Page<StudentDto> getAllStudent(Pageable pageable) {
@@ -42,18 +42,23 @@ public class StudentService {
     public StudentDto getByIdStudent(Integer id) {
         Student student = repo.findById(id)
                 .orElseThrow(() -> new NotFoundException("Student not found with ID: " + id));
-        return FnMapper.createEntity(StudentDto::new, mapperEntityToDto(student));
+        return FnMapper.createEntity(StudentDto::new,
+                mapperEntityToDto(student)
+                        .andThen(FnMapper.consumer(student)));
     }
 
-    public List<StudentDto> getAllById(List<Integer> ids) {
-        return FnMapper.<Student, StudentDto>mapperList(StudentDto::new).apply(repo.findAllById(ids));
+    public List<StudentDto> getAllById(Integer id) {
+       List<Student> students = repo.findAllByIdParent(id);
+       if(students.isEmpty()){
+           throw new NotFoundException("Student not found with ID: " + id);
+       }
+        return FnMapper.<Student, StudentDto>mapperList(StudentDto::new).apply(students);
     }
     public Consumer<StudentDto> mapperEntityToDto(Student student){
         return studentDTO -> {
             studentDTO.setYearStudy(DateUtils.convertDateToString(student.getYearStudy()));
             studentDTO.setCreateAt(DateUtils.convertDateToString(student.getCreateAt()));
             studentDTO.setUpdateAt(DateUtils.convertDateToString(student.getUpdateAt()));
-            BeanUtils.copyProperties(student, studentDTO);
         };
     }
 }

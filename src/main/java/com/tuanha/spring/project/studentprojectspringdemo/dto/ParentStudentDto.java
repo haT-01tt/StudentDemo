@@ -11,4 +11,8 @@ import java.util.List;
 public class ParentStudentDto {
     List<StudentDto> studentDTO;
     ParentDto parentDTO;
+
+
+    public ParentStudentDto() {
+    }
 }

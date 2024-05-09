@@ -25,4 +25,7 @@ public class Student extends AbstractClassEntity {
     @Column(name = "year_study")
     private Date yearStudy;
 
+    @Column(name = "id_parent")
+    private Integer idParent;
+
 }

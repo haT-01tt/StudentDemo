@@ -1,10 +1,15 @@
 package com.tuanha.spring.project.studentprojectspringdemo.mapper;
 
+import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentDto;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.ParentStudentDto;
+import com.tuanha.spring.project.studentprojectspringdemo.dto.StudentDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -36,5 +41,16 @@ public class FnMapper {
             BeanUtils.copyProperties(entity, dto);
             return dto;
         }).toList());
+    }
+    public static <T, R, U> BiFunction<T, R, U> mapperBiEntityDto(Supplier<U> supplier, Consumer<U> consumer) {
+        return (p, s) -> {
+            U modelDto = supplier.get();
+            consumer.accept(modelDto);
+            return modelDto;
+        };
+    }
+
+    public static<T, R> Consumer<R> consumer (T entity){
+        return dto -> BeanUtils.copyProperties(entity, dto);
     }
 }

@@ -45,8 +45,8 @@ public class ParentService {
     public ParentDto getByIdParent(Integer id){
         return mapper.entityToDTO().apply(parentRepository.findById(id).get());
     }
-    public Optional<ParentDto> getAllById(Integer idStudent){
-        return Optional.ofNullable(mapper.entityToDTO().apply(parentRepository.findAllByIdStudent(idStudent).get()));
+    public Optional<ParentDto> getAllById(Integer id){
+        return Optional.ofNullable(mapper.entityToDTO().apply(parentRepository.findAllById(id).get()));
     }
 
 }

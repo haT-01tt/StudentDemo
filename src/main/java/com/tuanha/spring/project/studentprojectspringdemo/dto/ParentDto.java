@@ -11,6 +11,5 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ParentDto extends GeneralModelDto {
     String job;
-    @NotNull(message = "Id Student can't empty")
-    Integer idStudent;
+
 }
