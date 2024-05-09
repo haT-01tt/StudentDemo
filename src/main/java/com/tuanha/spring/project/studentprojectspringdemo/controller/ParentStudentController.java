@@ -25,12 +25,12 @@ public class ParentStudentController {
         return new ResponseEntity<>(new ResBody<>(service.getAllParentStudent(id),PR_STU_013.getCode(), PR_STU_013.getMessage()), HttpStatus.OK);
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<ResBody<?>> saveParentStudent(@RequestBody ParentStudentDto parentStudentDTO) {
-            return new ResponseEntity<>(
-                    new ResBody<>(service.save(parentStudentDTO),
-                            ExceptionCode.ParentStudentMessage.PR_STU_001.getCode(),
-                            ExceptionCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
-
-    }
+//    @PostMapping("/save")
+//    public ResponseEntity<ResBody<?>> saveParentStudent(@RequestBody ParentStudentDto parentStudentDTO) {
+//            return new ResponseEntity<>(
+//                    new ResBody<>(service.save(parentStudentDTO),
+//                            ExceptionCode.ParentStudentMessage.PR_STU_001.getCode(),
+//                            ExceptionCode.ParentStudentMessage.PR_STU_001.getMessage()), HttpStatus.OK);
+//
+//    }
 }
